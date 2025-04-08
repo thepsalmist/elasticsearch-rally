@@ -1,5 +1,5 @@
 #!/bin/bash
-LOCAL_PATH=$(pwd)
+LOCAL_PATH="/srv/data/elastic-rally"
 ES_HOST="http://host.docker.internal:9200"
 TRACK_NAME="mc-query-benchmark"
 INDEX_NAME="mc_search_url-000001"
@@ -21,7 +21,7 @@ docker run --rm --name esrally-create \
 echo "Tracks created in ${LOCAL_PATH}/tracks"
 
 # Create the custom operations files
-cat > ${LOCAL_PATH}/tracks/${TRACK_NAME}/operations/query-operations.json << 'EOF'
+cat > ${LOCAL_PATH}/tracks/${TRACK_NAME}/operations/query-operations.json << EOF
 {
   "name": "test-query-with-uss",
   "operation-type": "search",
@@ -223,7 +223,7 @@ EOF
 echo "Operations file created in ${LOCAL_PATH}/tracks/${TRACK_NAME}/challenges"
 
 # Create the challenge file
-cat > ${LOCAL_PATH}/tracks/${TRACK_NAME}/challenges/query-comparison.json << 'EOF'
+cat > ${LOCAL_PATH}/tracks/${TRACK_NAME}/challenges/query-comparison.json << EOF
 {
   "name": "query-comparison",
   "default": true,
