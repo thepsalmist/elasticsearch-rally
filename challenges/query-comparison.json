@@ -1,0 +1,28 @@
+{
+  "name": "query-comparison",
+  "default": false,
+  "description": "Compare performance of different query patterns",
+  "schedule": [
+    {
+      "operation": "test-query-with-uss",
+      "warmup-iterations": 10,
+      "iterations": 100,
+      "clients": 8,
+      "target-throughput": 10
+    },
+    {
+      "operation": "test-query-without-uss",
+      "warmup-iterations": 10,
+      "iterations": 100,
+      "clients": 8,
+      "target-throughput": 10
+    },
+    {
+      "operation": "test-simpler-query",
+      "warmup-iterations": 10,
+      "iterations": 100,
+      "clients": 8,
+      "target-throughput": 10
+    }
+  ]
+}

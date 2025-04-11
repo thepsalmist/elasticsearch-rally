@@ -1,0 +1,45 @@
+{
+    "name": "exact-url-prefix-diverse",
+    "operation-type": "search",
+    "index": "mc_search_contender-000001",
+    "body": {
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "range": {
+                "publication_date": {
+                  "gte": "2024-01-01",
+                  "lte": "2024-04-02"
+                }
+              }
+            },
+            {
+              "query_string": {
+                "query": "url:(\"https://www.nytimes.com/section\" OR \"https://www.washingtonpost.com/politics\" OR \"https://www.theguardian.com/us\" OR \"https://www.latimes.com/california\")",
+                "allow_leading_wildcard": false
+              }
+            }
+          ],
+          "must": [
+            {
+              "query_string": {
+                "query": "(time OR play) -(office OR work)",
+                "default_field": "text_content"
+              }
+            }
+          ]
+        }
+      },
+      "aggs": {
+        "domain_counts": {
+          "terms": {
+            "field": "canonical_domain",
+            "size": 10
+          }
+        }
+      },
+      "track_total_hits": true,
+      "size": 0
+    }
+  }

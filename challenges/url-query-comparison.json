@@ -1,0 +1,21 @@
+{
+    "name": "query-comparison",
+    "default": true,
+    "description": "Compare performance of different url query patterns",
+    "schedule": [
+      {
+        "operation": "fully-prefixed-guardian-urls",
+        "warmup-iterations": 10,
+        "iterations": 100,
+        "clients": 8,
+        "target-throughput": 10
+      },
+      {
+        "operation": "wildcard-guardian-urls",
+        "warmup-iterations": 10,
+        "iterations": 100,
+        "clients": 8,
+        "target-throughput": 10
+      }
+    ]
+  }
